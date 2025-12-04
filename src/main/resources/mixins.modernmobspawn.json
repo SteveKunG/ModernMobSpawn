@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8.4",
+  "package": "com.stevekung.modernmobspawn.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "target": "@env(DEFAULT)",
+  "refmap": "mixins.modernmobspawn.refmap.json",
+  "mixins": [
+    "MixinEntityMob"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
