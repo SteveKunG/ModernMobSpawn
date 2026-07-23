@@ -34,7 +34,7 @@ base {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(25))
+        languageVersion.set(JavaLanguageVersion.of(8))
         vendor.set(JvmVendorSpec.AZUL)
     }
 }
@@ -87,16 +87,15 @@ repositories {
 
 dependencies {
     if (project.hasProperty("use_mixin") && use_mixin.toBoolean()) {
-        String mixin = modUtils.enableMixins("zone.rong:mixinbooter:${mixin_booter_version}", "mixins.${mod_id}.refmap.json")
-        api(mixin) {
+        String mixin = "zone.rong:mixinbooter:${mixin_booter_version}"
+
+        implementation (mixin) {
             transitive = false
         }
-        annotationProcessor "org.ow2.asm:asm-debug-all:5.2"
-        annotationProcessor "com.google.guava:guava:32.1.2-jre"
-        annotationProcessor "com.google.code.gson:gson:2.8.9"
-        annotationProcessor(mixin) {
-            transitive = false
-        }
+        annotationProcessor mixin
+
+        // RetroFuturaGradle for refmap generation:
+        modUtils.enableMixins(mixin)
     }
 }
 
