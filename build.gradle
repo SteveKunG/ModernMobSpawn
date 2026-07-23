@@ -176,6 +176,8 @@ curseforge {
         releaseType = release_type
         addGameVersion "Forge"
         addGameVersion minecraft_version
+        addGameVersion "Client"
+        addGameVersion "Server"
 
         if (project.hasProperty("curseforge_additional_game_versions") && !curseforge_additional_game_versions.isEmpty()) {
             curseforge_additional_game_versions.split(",").each {
